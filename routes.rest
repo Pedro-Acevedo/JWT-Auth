@@ -1,0 +1,32 @@
+GET http://localhost:3000/users/
+
+###
+POST  http://localhost:3000/users/new
+Content-Type: application/json
+ 
+{
+    "name": "Pedro",
+    "username": "ace",
+    "password": "Ace"
+}
+
+
+###
+PATCH  http://localhost:3000/users/63b896a562c3e252d9232a5a
+Content-Type:  application/json
+
+{
+    "username": "LJ23"
+}
+
+###
+DELETE http://localhost:3000/users/63b961ab87ffbf95432bf8d8
+
+###
+POST http://localhost:3000/users/login
+Content-Type: application/json
+
+{
+    "username": "PeterAce",
+    "password": "Ae"
+}
