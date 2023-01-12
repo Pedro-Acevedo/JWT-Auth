@@ -5,9 +5,9 @@ POST  http://localhost:3000/users/new
 Content-Type: application/json
  
 {
-    "name": "Pedro",
-    "username": "ace",
-    "password": "Ace"
+    "name": "Kyle",
+    "username": "Martin",
+    "password": "123"
 }
 
 
@@ -20,13 +20,17 @@ Content-Type:  application/json
 }
 
 ###
-DELETE http://localhost:3000/users/63b961ab87ffbf95432bf8d8
+DELETE http://localhost:3000/users/63b961d63fcea0bb2f028d69
+
+###
+GET http://localhost:3000/users/post
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Ik1hcnRpbkwiLCJpYXQiOjE2NzM1MjcwMzB9.eoPrtWwQtNuneFPg6D5arbsaC3Vqhcem2ZYZnqcapBk
 
 ###
 POST http://localhost:3000/users/login
 Content-Type: application/json
 
 {
-    "username": "PeterAce",
-    "password": "Ae"
+    "username": "Martin",
+    "password": "123"
 }

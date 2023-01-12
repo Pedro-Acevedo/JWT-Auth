@@ -1,13 +1,21 @@
 const express = require('express')
-const user = require('../model/user')
 const router = express.Router()
 const User = require('../model/user')
 const bcrypt = require('bcrypt')
+const jwt = require('jsonwebtoken')
+require('dotenv').config()
 
 router.get('/', async(req, res) =>{
     const users = await User.find()
     res.send(users)
 })
+
+router.get('/post', authenticateJWT, async (req, res) => {
+    const UserVerified = await User.find({userName: req.user.username})
+    // res.json({ user: authuser})
+    res.send(UserVerified)
+})
+
 
 router.get('/:id', getUserById, (req, res) =>{
     try{
@@ -16,6 +24,7 @@ router.get('/:id', getUserById, (req, res) =>{
         res.json({message: err.message})
     }
 })
+
 
 //Register User
 router.post('/new', async(req, res)=>{
@@ -34,6 +43,7 @@ router.post('/new', async(req, res)=>{
     }
 })
 
+
 // Login user
 
 router.post('/login', async (req, res) =>{
@@ -46,7 +56,10 @@ router.post('/login', async (req, res) =>{
     try{
         // const match = await bcrypt.compare( password, user.password)
         if( await bcrypt.compare( req.body.password, user[0].password) ){
-            res.send('User Authenticated')
+
+            const user = { username: req.body.username}
+            const accessToken = jwt.sign( user, process.env.ACCESS_TOKEN)
+            res.json({ accessToken : accessToken})
         } else {
             res.send('Could not login')
         }
@@ -97,7 +110,15 @@ async function getUserById(req, res, next){
     next()
 }
 
-// async function authenticate( password, hashedPassword){
-//     return await bcrypt.compare( password, hashedPassword)
-// }
+function authenticateJWT( req, res, next){
+    const authHeader = req.headers['authorization']
+    const token = authHeader && authHeader.split(' ')[1]
+    if(token == null) return res.sendStatus(401)
+    
+    jwt.verify( token, process.env.ACCESS_TOKEN, (err, user) => {
+        if(err) return res.sendStatus(403)
+        req.user = user
+        next()
+    })
+}
 module.exports = router
