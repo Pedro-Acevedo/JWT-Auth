@@ -1,3 +1,4 @@
+
 GET http://localhost:3000/users/
 
 ###
@@ -5,8 +6,8 @@ POST  http://localhost:3000/users/new
 Content-Type: application/json
  
 {
-    "name": "Kyle",
-    "username": "Martin",
+    "name": "Peter",
+    "username": "PeterAce",
     "password": "123"
 }
 
@@ -24,13 +25,23 @@ DELETE http://localhost:3000/users/63b961d63fcea0bb2f028d69
 
 ###
 GET http://localhost:3000/users/post
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Ik1hcnRpbkwiLCJpYXQiOjE2NzM1MjcwMzB9.eoPrtWwQtNuneFPg6D5arbsaC3Vqhcem2ZYZnqcapBk
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjp7InVzZXJuYW1lIjoiTWFydGluIn0sImlhdCI6MTY3MzcwNDY3MCwiZXhwIjoxNjczNzA0NjkwfQ.TgzRpEtL3Mf0H11p5hGC3Tha1redAOKGQMeXxMlxVhI
+
 
 ###
-POST http://localhost:3000/users/login
+
+POST http://localhost:4000/token
 Content-Type: application/json
 
 {
-    "username": "Martin",
+    "refreshToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjp7InVzZXJuYW1lIjoiTWFydGluIn0sImlhdCI6MTY3MzcwNjc2N30.aA139i2QrbPtx8OA-VKxI9_KRpusrZKGIk0wyA4ENNs"
+}
+
+###
+POST http://localhost:4000/login
+Content-Type: application/json
+
+{
+    "username": "PeterAce",
     "password": "123"
 }

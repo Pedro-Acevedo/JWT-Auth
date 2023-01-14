@@ -11,9 +11,9 @@ router.get('/', async(req, res) =>{
 })
 
 router.get('/post', authenticateJWT, async (req, res) => {
-    const UserVerified = await User.find({userName: req.user.username})
-    // res.json({ user: authuser})
-    res.send(UserVerified)
+    const UserVerified = await User.find({userName: req.user.name.username})
+    res.json({ user: UserVerified})
+    // res.send(req.user.name.username)
 })
 
 
@@ -45,29 +45,6 @@ router.post('/new', async(req, res)=>{
 
 
 // Login user
-
-router.post('/login', async (req, res) =>{
-    let user = await User.find({userName: req.body.username})
-    // const username = user.select("name")
-    if (user == null){
-         res.send('User not found')
-    }
-    
-    try{
-        // const match = await bcrypt.compare( password, user.password)
-        if( await bcrypt.compare( req.body.password, user[0].password) ){
-
-            const user = { username: req.body.username}
-            const accessToken = jwt.sign( user, process.env.ACCESS_TOKEN)
-            res.json({ accessToken : accessToken})
-        } else {
-            res.send('Could not login')
-        }
-    } catch (err) {
-        res.json({ message: err.message })
-        // res.send(  user[0].password)
-    }
-})
 
 router.patch('/:id', getUserById, async(req, res) =>{
     if( req.body.name != null ){
