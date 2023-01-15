@@ -11,9 +11,9 @@ router.get('/', async(req, res) =>{
 })
 
 router.get('/post', authenticateJWT, async (req, res) => {
-    const UserVerified = await User.find({userName: req.user.name.username})
+    const UserVerified = await User.findOne({userName: req.user.name})
     res.json({ user: UserVerified})
-    // res.send(req.user.name.username)
+    // res.send(req.user)
 })
 
 
@@ -44,7 +44,7 @@ router.post('/new', async(req, res)=>{
 })
 
 
-// Login user
+// Update user
 
 router.patch('/:id', getUserById, async(req, res) =>{
     if( req.body.name != null ){

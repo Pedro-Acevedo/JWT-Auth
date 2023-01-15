@@ -25,17 +25,15 @@ DELETE http://localhost:3000/users/63b961d63fcea0bb2f028d69
 
 ###
 GET http://localhost:3000/users/post
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjp7InVzZXJuYW1lIjoiTWFydGluIn0sImlhdCI6MTY3MzcwNDY3MCwiZXhwIjoxNjczNzA0NjkwfQ.TgzRpEtL3Mf0H11p5hGC3Tha1redAOKGQMeXxMlxVhI
-
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiUGV0ZXJBY2UiLCJpYXQiOjE2NzM3MjU5NTV9.hv_XDjlQotivErlIY5iWPq9WIsejleNSyFD4dGn-zIs
 
 ###
 
-POST http://localhost:4000/token
-Content-Type: application/json
+get http://localhost:4000/token
 
-{
-    "refreshToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiUGV0ZXJBY2UiLCJpYXQiOjE2NzM3MjM2NzF9.fxKP6jqY_aHcpZWe5o6pVEawO59B8is0LnRSwOiezps"
-}
+###
+GET http://localhost:4000/logout
+
 
 ###
 POST http://localhost:4000/login
