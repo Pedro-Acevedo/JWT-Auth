@@ -29,6 +29,15 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiUGV0ZXJBY
 
 ###
 
+POST http://localhost:4000/login
+Content-Type: application/json
+
+{
+    "username": "m",
+    "password": "123"
+}
+###
+
 get http://localhost:4000/token
 
 ###
@@ -36,10 +45,3 @@ GET http://localhost:4000/logout
 
 
 ###
-POST http://localhost:4000/login
-Content-Type: application/json
-
-{
-    "username": "PeterAce",
-    "password": "123"
-}
